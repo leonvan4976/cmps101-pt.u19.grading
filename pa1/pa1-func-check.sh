@@ -56,7 +56,7 @@ read garbage
 for NUM in $(seq 1 $NUMTESTS); do
    echo "Lex Valgrind Test $NUM:"
    echo "=========="
-   cat valgrind-out$NUM.txt | grep --after-context=8 -E 'SUMMARY|freed'
+   cat valgrind-out$NUM.txt
    echo "=========="
 done
 
