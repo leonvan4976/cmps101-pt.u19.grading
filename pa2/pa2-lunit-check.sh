@@ -25,7 +25,7 @@ read verbose
 gcc -c -std=c99 -Wall -g ModelListTest.c List.c
 gcc -o ModelListTest ModelListTest.o List.o
 
-timeout $TIME valgrind --leak-check=full -v ./ModelListTest -v
+timeout $TIME ./ModelListTest -v
 
 echo ""
 echo ""
