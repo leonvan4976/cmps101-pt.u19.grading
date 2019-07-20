@@ -7,7 +7,7 @@ The following is a set of performance tests to run on your Sparse program. It ta
 Run the following in your working directory (the directory you wrote your code in) to get the test script and example input files:
 
 ```bash
-curl https://raw.githubusercontent.com/houi-lin/cmps101-pt.u19/master/pa2/pa2.sh > pa2.sh
+curl https://raw.githubusercontent.com/houi-lin/cmps101-pt.u19.grading/master/pa2/pa2.sh > pa2.sh
 chmod +x pa2.sh
 ```
 
