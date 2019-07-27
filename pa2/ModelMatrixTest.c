@@ -235,8 +235,8 @@ uint8_t runTest(Matrix *pA, Matrix *pB, Matrix *pC, Matrix *pD, int test) {
       }
     case Empty_equals:
       {
-        if (!equals(A, B)) return 1;
         *pC = newMatrix(15);
+        if (!equals(A, B)) return 1;
         if (equals(A, *pC)) return 2;
         *pD = newMatrix(10);
         changeEntry(*pD, 5, 5, 5);
@@ -250,6 +250,7 @@ uint8_t runTest(Matrix *pA, Matrix *pB, Matrix *pC, Matrix *pD, int test) {
         changeEntry(A, 1, 1, 1);
         changeEntry(*pC, 1, 1, 1);
         if (equals(A, *pC)) return 1;
+        *pD = newMatrix(15);
         changeEntry(A, 1, 1, 1);
         changeEntry(A, 1, 3, 1);
         changeEntry(B, 1, 1, 1);
@@ -276,6 +277,7 @@ uint8_t runTest(Matrix *pA, Matrix *pB, Matrix *pC, Matrix *pD, int test) {
           changeEntry(B, j, j, 1); // hint: this is the identity matrix
         }
         freeMatrix(pC);
+        freeMatrix(pD);
         *pC = scalarMult(2, A);
         *pD = sum(A, A);
         if (!equals(*pC, *pD)) return 5;
@@ -337,9 +339,9 @@ int main (int argc, char **argv) {
     testStatus = runTest(&A, &B, &C, &D, i);
     freeMatrix(&A);
     freeMatrix(&B);
-    if (i >= Copy_getNNZ && i <= NonEmpty_equals) {
+    if (i >= Copy_getNNZ) {
       freeMatrix(&C);
-      freeMatrix(&D);
+      if (testStatus == 0 || testStatus > 1) freeMatrix(&D);
     }
     uint8_t fail_type = setjmp(test_crash);
     if (argc == 2) { // it's verbose mode
